@@ -31,14 +31,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd Lab4/backend
+          cd backend
           pip install -r requirements.txt
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
         run: |
-          cd Lab4/backend
+          cd backend
           zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
@@ -46,7 +46,7 @@ jobs:
         with:
           name: python-app
           path: |
-            Lab4/backend/release.zip
+            backend/release.zip
             !venv/
 
   deploy:
