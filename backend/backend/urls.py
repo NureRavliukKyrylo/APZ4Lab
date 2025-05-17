@@ -20,8 +20,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=(permissions.AllowAny,),
-    url='https://apz-a8cebjfyhve8h5bb.polandcentral-01.azurewebsites.net/',
+    permission_classes=(permissions.AllowAny,)
 )
 
 
