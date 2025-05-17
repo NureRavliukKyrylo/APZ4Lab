@@ -107,7 +107,7 @@ class LoginCustomerView(APIView):
                     path='/',
                     samesite='None'
             )
-                response.set_cookie('refresh_token', refresh_token, httponly=False, secure=secure, max_age=86400, path='/')
+                response.set_cookie('refresh_token', refresh_token, httponly=False, secure=True, max_age=86400, path='/')
 
                 return response
 
