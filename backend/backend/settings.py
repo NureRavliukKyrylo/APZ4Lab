@@ -195,18 +195,17 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SECURE = True
 
-EMAIL_BACKEND = config("EMAIL_BACKEND")
-EMAIL_HOST = config("EMAIL_HOST")
-EMAIL_PORT = config("EMAIL_PORT", cast=int)
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
+EMAIL_HOST = config("EMAIL_HOST", default="")
+EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="no-reply@example.com")
 
-FIREBASE_API_KEY = config("FIREBASE_API_KEY")
+FIREBASE_API_KEY = config("FIREBASE_API_KEY", default="")
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID", default="")
+ENCRYPTION_KEY = config("ENCRYPTION_KEY", default="dummy").encode()
 
-GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID")
-
-ENCRYPTION_KEY = config("ENCRYPTION_KEY").encode()
-
-SERVICE_ACCOUNT_INFO = json.loads(config("FIREBASE_SERVICE_ACCOUNT_JSON"))
+SERVICE_ACCOUNT_JSON = config("FIREBASE_SERVICE_ACCOUNT_JSON", default="{}")
+SERVICE_ACCOUNT_INFO = json.loads(SERVICE_ACCOUNT_JSON)
