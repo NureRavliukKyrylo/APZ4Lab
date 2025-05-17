@@ -26,7 +26,7 @@ jobs:
 
       - name: Create and start virtual environment
         run: |
-          cd tellJoke/backend
+          cd Lab4/backend
           pip install -r requirements.txt
 
       - name: Install dependencies
