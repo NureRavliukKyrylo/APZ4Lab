@@ -174,6 +174,7 @@ def check_collection_date_update(sender, instance, **kwargs):
                 for operator in operators:
                     settings_user = UserSettings.objects.filter(user=operator).first()
                     if settings_user:
+                        print(f"{operator.id} {settings_user.push_notifications}")
                         formatted_collection_date = instance.collection_date.strftime('%Y-%m-%d %H:%M')
                         NotificationsUser.objects.create(
                             user_id=operator,
@@ -193,6 +194,7 @@ def check_collection_date_update(sender, instance, **kwargs):
                             )
 
                         if settings_user.push_notifications:
+                            print(f"➡ Sending push to {operator.id}")
                             device_token = DeviceToken.objects.filter(user=operator).first()
                             if device_token:
                                 send_firebase_notification(
