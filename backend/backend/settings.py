@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = config("DEBUG", default="False").lower() == "true"
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY", default="default-key")
 
 ALLOWED_HOSTS = ['*']
 
@@ -109,12 +109,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,
-            ssl_require=True,
-            default=os.environ.get("DATABASE_URL")
-        )
-    }
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True,
+        default=config("DATABASE_URL", default="sqlite:///db.sqlite3") 
+    )
+}
 
 
 # Password validation
