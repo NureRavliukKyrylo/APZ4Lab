@@ -46,7 +46,7 @@ jobs:
         with:
           name: python-app
           path: |
-            release.zip
+            Lab4/backend/release.zip
             !venv/
 
   deploy:
